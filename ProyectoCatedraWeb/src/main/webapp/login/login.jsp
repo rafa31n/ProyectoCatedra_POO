@@ -48,6 +48,8 @@
                                 if (Login.verificarUsuario(nombre,contra) == true) {
                                     Login.setSession(nombre,contra);
                                     response.sendRedirect("../index.jsp");
+                                    Cookie usuarioCookie=new Cookie("usuarioCookie",nombre);
+
                                 }else {
                                     out.println("Revise sus credenciales");
                                 }

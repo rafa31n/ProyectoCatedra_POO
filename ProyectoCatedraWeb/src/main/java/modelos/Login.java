@@ -9,9 +9,9 @@ public class Login {
     static String SQL_EXIST_USER = "SELECT id_usuario FROM usuario WHERE username_usuario=? AND contrasena_usuario=?";
     static String SQL_SELECT = "SELECT * FROM usuario WHERE username_usuario=? AND contrasena_usuario=?";
     public static Boolean verificarUsuario(String nombre, String contraseña) {
-        Connection conn;
-        PreparedStatement ps;
-        ResultSet rs;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
         Boolean existe = null;
         try {
             conn = ConexionJava.getConnection();
@@ -27,13 +27,17 @@ public class Login {
             return existe;
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            ConexionJava.close(rs);
+            ConexionJava.close(ps);
+            ConexionJava.close(conn);
         }
         return existe;
     }
     public static void setSession(String nombre, String contraseña) {
-        Connection conn;
-        PreparedStatement ps;
-        ResultSet rs;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
         Session session = new Session();
 
         try {
@@ -63,6 +67,10 @@ public class Login {
             session.setId_cargo(id_cargo);
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            ConexionJava.close(rs);
+            ConexionJava.close(ps);
+            ConexionJava.close(conn);
         }
     }
 }

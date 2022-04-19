@@ -1,6 +1,7 @@
 <%@ page import="modelos.Session" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:include page="menu/menu.jsp"></jsp:include>
+<jsp:include page="Controlador/DashboardControlador.jsp"></jsp:include>
 
 <!DOCTYPE html>
 <html>
@@ -12,13 +13,7 @@
 </head>
 <body>
 
-<!---Poner el content-container para el contenido--->
-<div class="content-container">
-    <h1><%= "Hello World!" %>
-    </h1>
-    <br/>
-    <a href="hello-servlet">Hello <%= Session.getNombre_usuario()%></a>
-</div>
+
 
 
 </body>
