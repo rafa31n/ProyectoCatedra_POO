@@ -3,6 +3,9 @@
 <jsp:include page="menu/menu.jsp"></jsp:include>
 <jsp:include page="Controlador/DashboardControlador.jsp"></jsp:include>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,8 +15,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
 <body>
-
-
 
 
 </body>

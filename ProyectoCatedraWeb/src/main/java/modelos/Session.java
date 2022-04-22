@@ -1,13 +1,13 @@
 package modelos;
 
 public class Session {
-    private static Integer id_usuario;
+    private static   Integer id_usuario;
     private static String nombre_usuario;
     private static String contrasena_usuario;
-    private static  Integer id_departamento;
-    private static Integer id_cargo;
+    private static   Integer id_departamento;
+    private static   Integer id_cargo;
 
-    public static Integer getId_usuario() {
+    public  Integer getId_usuario() {
         return id_usuario;
     }
 
@@ -15,7 +15,7 @@ public class Session {
         this.id_usuario = id_usuario;
     }
 
-    public static String getNombre_usuario() {
+    public  String getNombre_usuario() {
         return nombre_usuario;
     }
 
@@ -23,7 +23,7 @@ public class Session {
         this.nombre_usuario = nombre_usuario;
     }
 
-    public static String getContrasena_usuario() {
+    public  String getContrasena_usuario() {
         return contrasena_usuario;
     }
 
@@ -31,7 +31,7 @@ public class Session {
         this.contrasena_usuario = contrasena_usuario;
     }
 
-    public static Integer getId_departamento() {
+    public  Integer getId_departamento() {
         return id_departamento;
     }
 
@@ -39,7 +39,7 @@ public class Session {
         this.id_departamento = id_departamento;
     }
 
-    public static Integer getId_cargo() {
+    public  Integer getId_cargo() {
         return id_cargo;
     }
 
