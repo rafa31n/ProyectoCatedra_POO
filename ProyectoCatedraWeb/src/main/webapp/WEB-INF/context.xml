@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Context>
+    <Resource name="jdbc/mysql" auth="Container" type="jakarta.sql.Datasource"
+              username="udseiu6bqnvpk1ym" password="ywLmU6giAuWjIQZN8hB4" driverClassName="com.mysql.cj.jdbc.Driver"
+              url="jdbc:mysql://botujl4t5mtacru2euoc-mysql.services.clever-cloud.com/botujl4t5mtacru2euoc"/>
+</Context>

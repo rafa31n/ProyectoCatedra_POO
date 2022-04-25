@@ -97,6 +97,19 @@
         .content-container {
             padding-left: 220px;
         }
+        .navbar {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+            margin-left: 14rem;
+        }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
@@ -124,7 +137,7 @@
         <!-- Bitacora-->
         <li>
 
-            <a href="../Bitacoras/CrearBitacoras.jsp">
+            <a href="../Bitacoras/Bitacoras.jsp">
                 <i class="bi-bootstrap" style="font-size: 1rem; color: rgb(255, 255, 255);"></i><i class="fa fa-tachometer" aria-hidden="true"></i> Bitacoras
             </a>
         </li>
@@ -164,7 +177,33 @@
         </li>
     </ul>
 </div>
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" >
 
 
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
+
+
+
+        <div class="topbar-divider d-none d-sm-block"></div>
+
+        <!-- Nav Item - User Information -->
+        <div class="dropdown open">
+            <button class="btn  dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                Dropdown
+            </button>
+            <div class="dropdown-menu" aria-labelledby="triggerId">
+                <button class="dropdown-item" href="#">Ver Perfil</button>
+                <button class="dropdown-item " href="#">Salir</button>
+            </div>
+        </div>
+
+    </ul>
+
+</nav>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://unpkg.com/popper.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
 </body>
 </html>
