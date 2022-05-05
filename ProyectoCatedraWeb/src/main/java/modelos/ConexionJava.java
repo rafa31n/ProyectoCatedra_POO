@@ -5,9 +5,9 @@ import java.sql.*;
 public class ConexionJava {
     private static Driver driver = null;
    static   String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-   static String JDBC_URL = "jdbc:mysql://botujl4t5mtacru2euoc-mysql.services.clever-cloud.com/botujl4t5mtacru2euoc";
-    static String JDBC_USER = "udseiu6bqnvpk1ym";
-   static String JDBC_PASS = "ywLmU6giAuWjIQZN8hB4";
+   static String JDBC_URL = "jdbc:mysql://localhost/telecomunicacion2";
+    static String JDBC_USER = "root";
+   static String JDBC_PASS = "";
 
     public static synchronized Connection getConnection()
             throws SQLException {

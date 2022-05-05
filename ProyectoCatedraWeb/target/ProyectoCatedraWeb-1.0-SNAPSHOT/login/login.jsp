@@ -19,13 +19,13 @@
 </head>
 <body class="container" >
 
-<div id="login">
+<div id="login" >
     <h1 class="text-center text-white pt-5">Universidad Don Bosco</h1>
     <div class="container">
         <div id="login-row" class="row justify-content-center align-items-center">
             <div id="login-column" class="col-md-6">
                 <div id="login-box" class="col-md-12">
-                    <form id="login-form" class="form"  method="post">
+                    <form id="login-form" action="/Login" class="form"  method="post">
                         <h3 class="text-center text-info">Login</h3>
                         <div class="form-group">
                             <label for="username" class="text-info">Usuario:</label><br>
@@ -38,25 +38,8 @@
                         <div class="form-group">
                             <input type="submit" name="operacion" class="btn btn-info btn-md"
                                    value="logueo">
-
                         </div>
                         <br>
-                        <%
-                            if (request.getParameter("operacion")!=null){
-                                String nombre,contra;
-                                nombre=request.getParameter("usuario");
-                                contra=request.getParameter("password");
-                                if (Login.verificarUsuario(nombre,contra) == true) {
-                                    Login.setSession(nombre,contra);
-                                    response.sendRedirect("../index.jsp");
-                                    Cookie usuarioCookie=new Cookie("usuarioCookie",nombre);
-
-                                }else {
-                                    out.println("Revise sus credenciales");
-                                }
-                            }
-
-                        %>
                     </form>
                 </div>
             </div>

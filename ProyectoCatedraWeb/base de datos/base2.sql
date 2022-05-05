@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: botujl4t5mtacru2euoc-mysql.services.clever-cloud.com
--- Tiempo de generación: 25-04-2022 a las 20:29:35
--- Versión del servidor: 8.0.15-5
--- Versión de PHP: 7.3.33-1+ubuntu18.04.1+deb.sury.org+1
+-- Host: telecomunicacion2-mysql.services.clever-cloud.com:3306
+-- Generation Time: May 05, 2022 at 07:48 PM
+-- Server version: 8.0.15-5
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,13 +19,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `botujl4t5mtacru2euoc`
+-- Database: `telecomunicacion2`
 --
+CREATE DATABASE IF NOT EXISTS `telecomunicacion2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `telecomunicacion2`;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `argumento`
+-- Table structure for table `argumento`
 --
 
 CREATE TABLE `argumento` (
@@ -36,7 +39,7 @@ CREATE TABLE `argumento` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `bitacora`
+-- Table structure for table `bitacora`
 --
 
 CREATE TABLE `bitacora` (
@@ -51,7 +54,7 @@ CREATE TABLE `bitacora` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cargo`
+-- Table structure for table `cargo`
 --
 
 CREATE TABLE `cargo` (
@@ -60,7 +63,7 @@ CREATE TABLE `cargo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `cargo`
+-- Dumping data for table `cargo`
 --
 
 INSERT INTO `cargo` (`id_cargo`, `nombre_cargo`) VALUES
@@ -73,7 +76,7 @@ INSERT INTO `cargo` (`id_cargo`, `nombre_cargo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `caso`
+-- Table structure for table `caso`
 --
 
 CREATE TABLE `caso` (
@@ -90,7 +93,7 @@ CREATE TABLE `caso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `caso`
+-- Dumping data for table `caso`
 --
 
 INSERT INTO `caso` (`id_caso`, `id_estado`, `id_departamento`, `progreso`, `titulo`, `descripcion`, `pdf_caso`, `fecha_inicio`, `fecha_final`, `fecha_creacion`) VALUES
@@ -100,7 +103,7 @@ INSERT INTO `caso` (`id_caso`, `id_estado`, `id_departamento`, `progreso`, `titu
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `casos_finalizados`
+-- Table structure for table `casos_finalizados`
 --
 
 CREATE TABLE `casos_finalizados` (
@@ -112,7 +115,7 @@ CREATE TABLE `casos_finalizados` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `departamento`
+-- Table structure for table `departamento`
 --
 
 CREATE TABLE `departamento` (
@@ -121,7 +124,7 @@ CREATE TABLE `departamento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `departamento`
+-- Dumping data for table `departamento`
 --
 
 INSERT INTO `departamento` (`id_departamento`, `nombre_departamento`) VALUES
@@ -134,7 +137,7 @@ INSERT INTO `departamento` (`id_departamento`, `nombre_departamento`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `estado`
+-- Table structure for table `estado`
 --
 
 CREATE TABLE `estado` (
@@ -143,7 +146,7 @@ CREATE TABLE `estado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `estado`
+-- Dumping data for table `estado`
 --
 
 INSERT INTO `estado` (`id_estado`, `nombre_estado`) VALUES
@@ -158,7 +161,7 @@ INSERT INTO `estado` (`id_estado`, `nombre_estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `historial_caso`
+-- Table structure for table `historial_caso`
 --
 
 CREATE TABLE `historial_caso` (
@@ -172,7 +175,7 @@ CREATE TABLE `historial_caso` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `observacion`
+-- Table structure for table `observacion`
 --
 
 CREATE TABLE `observacion` (
@@ -184,7 +187,7 @@ CREATE TABLE `observacion` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `probador_caso`
+-- Table structure for table `probador_caso`
 --
 
 CREATE TABLE `probador_caso` (
@@ -194,7 +197,7 @@ CREATE TABLE `probador_caso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `probador_caso`
+-- Dumping data for table `probador_caso`
 --
 
 INSERT INTO `probador_caso` (`id_testing`, `id_caso`, `id_usuario`) VALUES
@@ -203,7 +206,7 @@ INSERT INTO `probador_caso` (`id_testing`, `id_caso`, `id_usuario`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `programador_caso`
+-- Table structure for table `programador_caso`
 --
 
 CREATE TABLE `programador_caso` (
@@ -213,7 +216,7 @@ CREATE TABLE `programador_caso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `programador_caso`
+-- Dumping data for table `programador_caso`
 --
 
 INSERT INTO `programador_caso` (`id_programador_caso`, `id_caso`, `id_usuario`) VALUES
@@ -223,7 +226,7 @@ INSERT INTO `programador_caso` (`id_programador_caso`, `id_caso`, `id_usuario`) 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Table structure for table `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -237,7 +240,7 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `usuario`
+-- Dumping data for table `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `apellido_usuario`, `username_usuario`, `contrasena_usuario`, `id_departamento`, `id_cargo`) VALUES
@@ -253,18 +256,18 @@ INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `apellido_usuario`, `user
 (14, 'ministro', 'aaa', 'adminFi', 123, 2, 2);
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `argumento`
+-- Indexes for table `argumento`
 --
 ALTER TABLE `argumento`
   ADD PRIMARY KEY (`id_argumento`),
   ADD KEY `id_caso` (`id_caso`);
 
 --
--- Indices de la tabla `bitacora`
+-- Indexes for table `bitacora`
 --
 ALTER TABLE `bitacora`
   ADD PRIMARY KEY (`id_bitacora`),
@@ -272,13 +275,13 @@ ALTER TABLE `bitacora`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indices de la tabla `cargo`
+-- Indexes for table `cargo`
 --
 ALTER TABLE `cargo`
   ADD PRIMARY KEY (`id_cargo`);
 
 --
--- Indices de la tabla `caso`
+-- Indexes for table `caso`
 --
 ALTER TABLE `caso`
   ADD PRIMARY KEY (`id_caso`),
@@ -286,26 +289,26 @@ ALTER TABLE `caso`
   ADD KEY `caso_ibfk_2` (`id_departamento`);
 
 --
--- Indices de la tabla `casos_finalizados`
+-- Indexes for table `casos_finalizados`
 --
 ALTER TABLE `casos_finalizados`
   ADD PRIMARY KEY (`id_CasoFinalizado`),
   ADD KEY `id_caso` (`id_caso`);
 
 --
--- Indices de la tabla `departamento`
+-- Indexes for table `departamento`
 --
 ALTER TABLE `departamento`
   ADD PRIMARY KEY (`id_departamento`);
 
 --
--- Indices de la tabla `estado`
+-- Indexes for table `estado`
 --
 ALTER TABLE `estado`
   ADD PRIMARY KEY (`id_estado`);
 
 --
--- Indices de la tabla `historial_caso`
+-- Indexes for table `historial_caso`
 --
 ALTER TABLE `historial_caso`
   ADD PRIMARY KEY (`id_historial`),
@@ -313,14 +316,14 @@ ALTER TABLE `historial_caso`
   ADD KEY `id_caso` (`id_caso`);
 
 --
--- Indices de la tabla `observacion`
+-- Indexes for table `observacion`
 --
 ALTER TABLE `observacion`
   ADD PRIMARY KEY (`id_observacion`),
   ADD KEY `id_caso` (`id_caso`);
 
 --
--- Indices de la tabla `probador_caso`
+-- Indexes for table `probador_caso`
 --
 ALTER TABLE `probador_caso`
   ADD PRIMARY KEY (`id_testing`),
@@ -328,7 +331,7 @@ ALTER TABLE `probador_caso`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indices de la tabla `programador_caso`
+-- Indexes for table `programador_caso`
 --
 ALTER TABLE `programador_caso`
   ADD PRIMARY KEY (`id_programador_caso`),
@@ -336,7 +339,7 @@ ALTER TABLE `programador_caso`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indices de la tabla `usuario`
+-- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`),
@@ -344,134 +347,134 @@ ALTER TABLE `usuario`
   ADD KEY `id_cargo` (`id_cargo`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `argumento`
+-- AUTO_INCREMENT for table `argumento`
 --
 ALTER TABLE `argumento`
   MODIFY `id_argumento` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `bitacora`
+-- AUTO_INCREMENT for table `bitacora`
 --
 ALTER TABLE `bitacora`
   MODIFY `id_bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT de la tabla `cargo`
+-- AUTO_INCREMENT for table `cargo`
 --
 ALTER TABLE `cargo`
   MODIFY `id_cargo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `casos_finalizados`
+-- AUTO_INCREMENT for table `casos_finalizados`
 --
 ALTER TABLE `casos_finalizados`
   MODIFY `id_CasoFinalizado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `departamento`
+-- AUTO_INCREMENT for table `departamento`
 --
 ALTER TABLE `departamento`
   MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `estado`
+-- AUTO_INCREMENT for table `estado`
 --
 ALTER TABLE `estado`
   MODIFY `id_estado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `historial_caso`
+-- AUTO_INCREMENT for table `historial_caso`
 --
 ALTER TABLE `historial_caso`
   MODIFY `id_historial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `observacion`
+-- AUTO_INCREMENT for table `observacion`
 --
 ALTER TABLE `observacion`
   MODIFY `id_observacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `probador_caso`
+-- AUTO_INCREMENT for table `probador_caso`
 --
 ALTER TABLE `probador_caso`
   MODIFY `id_testing` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT de la tabla `programador_caso`
+-- AUTO_INCREMENT for table `programador_caso`
 --
 ALTER TABLE `programador_caso`
   MODIFY `id_programador_caso` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `usuario`
+-- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `argumento`
+-- Constraints for table `argumento`
 --
 ALTER TABLE `argumento`
   ADD CONSTRAINT `argumento_ibfk_1` FOREIGN KEY (`id_caso`) REFERENCES `caso` (`id_caso`);
 
 --
--- Filtros para la tabla `bitacora`
+-- Constraints for table `bitacora`
 --
 ALTER TABLE `bitacora`
   ADD CONSTRAINT `bitacora_ibfk_1` FOREIGN KEY (`id_caso`) REFERENCES `caso` (`id_caso`),
   ADD CONSTRAINT `bitacora_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
 
 --
--- Filtros para la tabla `caso`
+-- Constraints for table `caso`
 --
 ALTER TABLE `caso`
   ADD CONSTRAINT `caso_ibfk_1` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id_estado`),
   ADD CONSTRAINT `caso_ibfk_2` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id_departamento`);
 
 --
--- Filtros para la tabla `casos_finalizados`
+-- Constraints for table `casos_finalizados`
 --
 ALTER TABLE `casos_finalizados`
   ADD CONSTRAINT `casos_finalizados_ibfk_1` FOREIGN KEY (`id_caso`) REFERENCES `caso` (`id_caso`);
 
 --
--- Filtros para la tabla `historial_caso`
+-- Constraints for table `historial_caso`
 --
 ALTER TABLE `historial_caso`
   ADD CONSTRAINT `historial_caso_ibfk_30` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `historial_caso_ibfk_31` FOREIGN KEY (`id_caso`) REFERENCES `caso` (`id_caso`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Filtros para la tabla `observacion`
+-- Constraints for table `observacion`
 --
 ALTER TABLE `observacion`
   ADD CONSTRAINT `observacion_ibfk_1` FOREIGN KEY (`id_caso`) REFERENCES `caso` (`id_caso`);
 
 --
--- Filtros para la tabla `probador_caso`
+-- Constraints for table `probador_caso`
 --
 ALTER TABLE `probador_caso`
   ADD CONSTRAINT `probador_caso_ibfk_1` FOREIGN KEY (`id_caso`) REFERENCES `caso` (`id_caso`),
   ADD CONSTRAINT `probador_caso_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
 
 --
--- Filtros para la tabla `programador_caso`
+-- Constraints for table `programador_caso`
 --
 ALTER TABLE `programador_caso`
   ADD CONSTRAINT `programador_caso_ibfk_1` FOREIGN KEY (`id_caso`) REFERENCES `caso` (`id_caso`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `programador_caso_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Filtros para la tabla `usuario`
+-- Constraints for table `usuario`
 --
 ALTER TABLE `usuario`
   ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id_departamento`),
