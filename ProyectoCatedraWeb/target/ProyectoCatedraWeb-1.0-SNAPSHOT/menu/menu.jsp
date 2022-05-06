@@ -194,8 +194,8 @@
                 Dropdown
             </button>
             <div class="dropdown-menu" aria-labelledby="triggerId">
-                <button class="dropdown-item" href="#">Ver Perfil</button>
-                <button class="dropdown-item " href="#">Salir</button>
+                <a class="dropdown-item" href="#">Ver Perfil</a>
+                <a class="dropdown-item " href="../cerrarSession.jsp">Salir</a>
             </div>
         </div>
 

@@ -4,6 +4,8 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import modelos.Login;
+import modelos.Session;
+
 
 import java.io.IOException;
 
@@ -17,6 +19,14 @@ public class ServletLogin extends  HttpServlet {
            contrasena=request.getParameter("password");
            if (Login.verificarUsuario(usuario,contrasena)==true){
                Login.setSession(usuario,contrasena);
+               HttpSession sessionHTTP=request.getSession();
+               Session session=new Session();
+              // Cookie cookie=new Cookie("username",usuario);
+               sessionHTTP.setAttribute("nombre",session.getNombre_usuario());
+               sessionHTTP.setAttribute("username",usuario);
+               sessionHTTP.setAttribute("idusuario",session.getId_usuario());
+               sessionHTTP.setAttribute("idDepartamento",session.getId_departamento());
+               sessionHTTP.setAttribute("idCargo",session.getId_cargo());
                response.sendRedirect("index.jsp");
 
                System.out.println("el usuario existe");
