@@ -11,8 +11,8 @@
 <jsp:include page="../menu/menu.jsp"></jsp:include>
 <jsp:useBean id="caso" class="modelos.Casos"></jsp:useBean>
 <sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver"
-                   url="jdbc:mysql://botujl4t5mtacru2euoc-mysql.services.clever-cloud.com/botujl4t5mtacru2euoc"
-                   user="udseiu6bqnvpk1ym" password="ywLmU6giAuWjIQZN8hB4"></sql:setDataSource>
+                   url="jdbc:mysql://localhost/telecomunicacion2"
+                   user="root" password=""></sql:setDataSource>
 <html>
 <head>
     <title>bitacoras</title>

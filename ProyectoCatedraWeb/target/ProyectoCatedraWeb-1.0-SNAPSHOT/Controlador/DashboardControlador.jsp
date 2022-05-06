@@ -16,8 +16,8 @@
 
 
 <sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver"
-                   url="jdbc:mysql://botujl4t5mtacru2euoc-mysql.services.clever-cloud.com/botujl4t5mtacru2euoc"
-                   user="udseiu6bqnvpk1ym" password="ywLmU6giAuWjIQZN8hB4"></sql:setDataSource>
+                   url="jdbc:mysql://localhost/telecomunicacion2"
+                   user="root" password=""></sql:setDataSource>
 
 <c:set var="id_cargo" value="${obj.id_cargo}"></c:set>
 <c:set var="id_departamento" value="${obj.id_departamento}"></c:set>

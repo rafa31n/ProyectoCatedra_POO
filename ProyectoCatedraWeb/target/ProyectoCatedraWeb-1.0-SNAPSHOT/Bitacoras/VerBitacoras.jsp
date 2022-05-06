@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Fernando
@@ -16,7 +17,12 @@
 <d>
 <c:set var="idCaso" value="${param.id}"></c:set>
 <c:out value="${idCaso}"></c:out>
-
+    <sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver"
+                       url="jdbc:mysql://localhost/telecomunicacion2"
+                       user="root" password=""></sql:setDataSource>
+<sql:query var="rs" dataSource="${db}">select * from bitacora where id_caso=?
+    <sql:param value="${idCaso}"></sql:param>
+    </sql:query>
     <div class="content-container">
         <div class="container-xl container-fluid">
             <div class="">
@@ -25,6 +31,11 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <h2><b>Bitacoras</b></h2>
+                                <c:if test="${not empty mensaje}">
+                                    <div class="alert alert-primary" role="alert">
+                                        <strong><c:out value="${mensaje}"></c:out></strong>
+                                    </div>
+                                </c:if>
                             </div>
                             <div class="col-sm-6">
                                 <a href="#addBitacora" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Añadir nueva Bitacora</span></a>
@@ -37,19 +48,20 @@
                             <th>Titulo</th>
                             <th>Descripción</th>
                             <th>Progreso</th>
-                            <th>Estado</th>
                             <th>Fecha</th>
                         </tr>
                         </thead>
                         <tbody>
+                        <c:forEach items="${rs.rows}" var="row">
                         <tr>
 
-                            <td>Thomas Hardy</td>
-                            <td>thomashardy@mail.com</td>
-                            <td>89 Chiaroscuro Rd, Portland, USA</td>
-                            <td>(171) 555-2222</td>
+                            <td><c:out value="${row.titulo_bitacora}"></c:out></td>
+                            <td><c:out value="${row.descripcion_bitacora}"></c:out></td>
+                            <td><c:out value="${row.progreso_bitacora}"></c:out></td>
+                            <td><c:out value="${row.fecha_bitacora}"></c:out></td>
 
                         </tr>
+                        </c:forEach>
                         </tbody>
 
                 </div>
@@ -57,9 +69,10 @@
                 <div id="addBitacora" class="modal fade">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <form>
+                            <form action="/BitacoraServlet" method="get">
                                 <!-- idUsuario -->
                                 <input name="idUsuario" value="${sessionScope['idusuario']}" hidden>
+                                <input name="idCaso" value="${idCaso}" hidden>
                                 <div class="modal-header">
                                     <h4 class="modal-title">Añadir Bitacora</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -77,21 +90,16 @@
                                         <label>Descripción</label>
                                         <textarea class="form-control" name="txtDescripcion" required></textarea>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Phone</label>
-                                        <input type="text" class="form-control" required>
-                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                                    <input type="submit" name="operacion" class="btn btn-success" value="Añadir">
+                                    <input type="submit" name="operacion" class="btn btn-success" value="añadir">
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/popper.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+
 </body>
 </html>

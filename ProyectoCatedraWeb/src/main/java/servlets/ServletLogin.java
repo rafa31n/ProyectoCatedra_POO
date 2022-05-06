@@ -32,6 +32,8 @@ public class ServletLogin extends  HttpServlet {
                System.out.println("el usuario existe");
            }else{
                response.sendRedirect("login/login.jsp");
+
+
            }
 
        }catch (Exception e){e.printStackTrace();}
