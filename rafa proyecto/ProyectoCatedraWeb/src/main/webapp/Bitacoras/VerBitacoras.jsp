@@ -9,18 +9,19 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="../menu/menu.jsp"></jsp:include>
+<jsp:include page="../menus/menu.jsp"></jsp:include>
 <html>
 <head>
     <title>Ver Bitacoras</title>
 </head>
 <d>
 <c:set var="idCaso" value="${param.id}"></c:set>
+    <jsp:useBean id="caso" class="modelos.Casos"></jsp:useBean>
 <c:out value="${idCaso}"></c:out>
     <sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver"
                        url="jdbc:mysql://localhost/telecomunicacion2"
                        user="root" password=""></sql:setDataSource>
-<sql:query var="rs" dataSource="${db}">select * from bitacora where id_caso=?
+<sql:query var="rs" dataSource="${db}">select * from bitacora where id_caso=? order by fecha_bitacora,progreso_bitacora desc
     <sql:param value="${idCaso}"></sql:param>
     </sql:query>
     <div class="content-container">
@@ -37,9 +38,12 @@
                                     </div>
                                 </c:if>
                             </div>
-                            <div class="col-sm-6">
-                                <a href="#addBitacora" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Añadir nueva Bitacora</span></a>
-                            </div>
+                            <%--Si es programdor puede crea bitacora--%>
+                            <c:if test="${ sessionScope['idCargo']==1}">
+                                <div class="col-sm-6">
+                                    <a href="#addBitacora" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Añadir nueva Bitacora</span></a>
+                                </div>
+                            </c:if>
                         </div>
                     </div>
                     <table class="table table-striped table-hover">
@@ -57,7 +61,7 @@
 
                             <td><c:out value="${row.titulo_bitacora}"></c:out></td>
                             <td><c:out value="${row.descripcion_bitacora}"></c:out></td>
-                            <td><c:out value="${row.progreso_bitacora}"></c:out></td>
+                            <td><c:out value="${row.progreso_bitacora}"></c:out>%</td>
                             <td><c:out value="${row.fecha_bitacora}"></c:out></td>
 
                         </tr>
@@ -81,25 +85,30 @@
                                     <div class="form-group">
                                         <label>Titulo</label>
                                         <input type="text" class="form-control" name="txtNombre" required>
+                                        <label>Progreso actual</label>
+                                        <input name="progresoActual" value="${caso.progresoActual(idCaso)}" id="progresoActual" readonly>
                                     </div>
                                     <div class="form-group">
-                                        <label>Progreso</label>
-                                        <input type="number" class="form-control" name="txtProgreso" required>
+                                        <label>Progreso a cambiar</label>
+                                        <input type="number" class="form-control" name="txtProgreso" id="txtProgreso" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Descripción</label>
                                         <textarea class="form-control" name="txtDescripcion" required></textarea>
+                                        <div id="alertaJS">
+                                            <div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                                    <input type="submit" name="operacion" class="btn btn-success" value="añadir">
+                                    <input type="submit" id="operacion" name="operacion" class="btn btn-success" value="añadir">
+
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-
+<script src="js/crearBitacora.js"></script>
 
 </body>
 </html>

@@ -25,7 +25,7 @@ public class ServletLogin extends  HttpServlet {
                sessionHTTP.setAttribute("nombre",session.getNombre_usuario());
                sessionHTTP.setAttribute("username",usuario);
                sessionHTTP.setAttribute("idusuario",session.getId_usuario());
-               sessionHTTP.setAttribute("idDepartamento",session.getId_departamento());
+               sessionHTTP.setAttribute("idDepartamtento",session.getId_departamento());
                sessionHTTP.setAttribute("idCargo",session.getId_cargo());
                response.sendRedirect("index.jsp");
 
