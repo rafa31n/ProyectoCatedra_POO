@@ -39,7 +39,7 @@ public class ServletSolicitud extends HttpServlet {
                     InputStream inArchivo=archivo.getInputStream();
                     beans.setPdf_caso(( inArchivo));
                 }
-                //metodo.crearSolicitud(beans);
+                metodo.crearSolicitud(beans);
                request.getRequestDispatcher("/solicitud/solicitud.jsp").forward(request,response);
                 //response.sendRedirect("/solicitud/solicitud.jsp");
 

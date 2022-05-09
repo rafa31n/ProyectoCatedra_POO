@@ -71,7 +71,7 @@ public class Casos {
         try {
             LocalDate fechaActual=LocalDate.now();
             conn = ConexionJava.getConnection();
-            pr=conn.prepareStatement("insert into caso(id_departamento, progreso, titulo, descripcion, pdf_caso, fecha_creacion) values (?,0,?,?,?,?)");
+            pr=conn.prepareStatement("insert into caso(id_departamento, titulo, descripcion, pdf_caso, fecha_creacion) values (?,?,?,?,?)");
             pr.setString(1,beans.getId_department());
             pr.setString(2,beans.getTitulo());
             pr.setString(3,beans.getDescripcion());
