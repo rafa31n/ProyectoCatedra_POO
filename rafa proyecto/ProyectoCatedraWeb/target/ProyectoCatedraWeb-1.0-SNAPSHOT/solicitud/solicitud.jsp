@@ -20,6 +20,7 @@
     <div class="container">
 
         <h1>Crear una solicitud de caso</h1>
+
         <form action="/ServletSolicitud" method="post" enctype="multipart/form-data">
             <input type="text" hidden name="idDepartamento" value="${sessionScope['idDepartamtento']}">
 
@@ -29,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label for="">Ingrese la descripcion de su solicitud</label>
-                <input type="text" class="form-control" name="descripcion" id="descripcion" required>
+                <input type="text" class="form-control" name="descripcion" id="descripcion" >
 
             </div>
             <div class="form-group">

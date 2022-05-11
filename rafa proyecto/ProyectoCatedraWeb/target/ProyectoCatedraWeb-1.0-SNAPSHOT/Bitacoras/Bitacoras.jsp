@@ -13,6 +13,10 @@
 <sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver"
                    url="jdbc:mysql://localhost/telecomunicacion2"
                    user="root" password=""></sql:setDataSource>
+<c:set var="idDepartamento" value="${sessionScope['idDepartamtento']}"></c:set>
+<c:set var="idCargo" value="${sessionScope['idCargo']}"></c:set>
+<c:set var="idUser" value="${sessionScope['idusuario']}"></c:set>
+
 <html>
 <head>
     <title>bitacoras</title>
@@ -21,26 +25,55 @@
 </head>
 <body>
 <div class="content-container">
+    <c:choose>
+        <%--Programador--%>
+        <c:when test="${idCargo==1}">
+            <sql:query var="rs" dataSource="${db}">select * from caso left join programador_caso pc on caso.id_caso = pc.id_caso where pc.id_usuario=?
+                <sql:param value="${idUser}"></sql:param>
+            </sql:query>
+            <c:forEach items="${rs.rows}" var="row">
+                <div class="row">
+                    <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0 ">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title"> <c:out value="${row.titulo}"></c:out></h3>
+                                <p class="card-text">Descripcion:<c:out value="${row.descripcion}"></c:out></p>
+                                <h5 class="card-title">Estado: <c:out value="${caso.getEstadoName(row.id_caso)}"></c:out> </h5>
 
-    <sql:query var="rs" dataSource="${db}">select * from caso
-    </sql:query>
-    <c:forEach items="${rs.rows}" var="row">
-        <div class="row">
-            <div class="col-xl-4 col-sm-3 ">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title"> <c:out value="${row.titulo}"></c:out></h3>
-                        <p class="card-text">Descripcion:<c:out value="${row.descripcion}"></c:out></p>
-                        <h5 class="card-title">Estado: <c:out value="${caso.getEstadoName(row.id_caso)}"></c:out> </h5>
+                                <a name="" target="_blank" id="" class="btn btn-primary" href="verDetalles.jsp?id=${row.id_caso}" role="button">Ver más detalles</a>
+                                <a name="" id="" class="btn btn-primary" href="VerBitacoras.jsp?id=${row.id_caso}" role="button">Ver bitacoras</a>
 
-                        <a name="" id="" class="btn btn-primary" href="#" role="button">Ver más detalles</a>
-                        <a name="" id="" class="btn btn-primary" href="VerBitacoras.jsp?id=${row.id_caso}" role="button">Ver bitacoras</a>
-
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </c:forEach>
+            </c:forEach>
+        </c:when>
+        <%--Demas cargos--%>
+        <c:otherwise>
+            <sql:query var="rs" dataSource="${db}">select * from caso where id_departamento=?
+                <sql:param value="${idDepartamento}"></sql:param>
+            </sql:query>
+            <c:forEach items="${rs.rows}" var="row">
+                <div class="row">
+                    <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0 ">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title"> <c:out value="${row.titulo}"></c:out></h3>
+                                <p class="card-text">Descripcion:<c:out value="${row.descripcion}"></c:out></p>
+                                <h5 class="card-title">Estado: <c:out value="${caso.getEstadoName(row.id_caso)}"></c:out> </h5>
+
+                                <a name="" target="_blank" id="" class="btn btn-primary" href="verDetalles.jsp?id=${row.id_caso}" role="button">Ver más detalles</a>
+                                <a name="" id="" class="btn btn-primary" href="VerBitacoras.jsp?id=${row.id_caso}" role="button">Ver bitacoras</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </c:otherwise>
+    </c:choose>
+
 
     
 

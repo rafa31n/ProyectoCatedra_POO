@@ -195,7 +195,7 @@
                 <c:out value="${sessionScope['nombre']}"></c:out>
             </button>
             <div class="dropdown-menu" aria-labelledby="triggerId">
-                <a class="dropdown-item" href="#">Ver Perfil</a>
+                <a class="dropdown-item" href="../perfil.jsp">Ver Perfil</a>
                 <a class="dropdown-item " href="../cerrarSession.jsp">Salir</a>
             </div>
         </div>

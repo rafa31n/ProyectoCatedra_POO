@@ -37,7 +37,7 @@
 
         <table class="table thead-dark table-striped table-hover">
 
-            <thead class="">
+            <thead class="table-dark">
             <tr>
                 <td>Id del caso</td>
                 <td>tiutlo del caso</td>
@@ -47,6 +47,7 @@
                 <td>Fecha de inicio</td>
                 <td>Fecha de final</td>
                 <td>Fecha de Creacion</td>
+                <td></td>
             </tr>
             </thead>
             <c:forEach items="${rsBuscar.rows}" var="row">
@@ -56,7 +57,7 @@
                     <td>${row.descripcion}</td>
                     <td>${row.nombre_estado}</td>
                     <c:if test="${row.pdf_caso!=null}">
-                        <td> <a href="/ServletSolicitud?operacion=mostrar&id=${row.id_caso}">Descargar</a> </td>
+                        <td> <a class="btn btn-primary" target="_blank" href="/ServletSolicitud?operacion=mostrar&id=${row.id_caso}">Descargar</a> </td>
                     </c:if>
                     <c:if test="${row.pdf_caso==null}">
                         <td>No hay archivo</td>
@@ -64,6 +65,8 @@
                     <td>${row.fecha_inicio}</td>
                     <td>${row.fecha_final}</td>
                     <td>${row.fecha_creacion}</td>
+                    <td><a href="../historial/verHistorialCaso.jsp?id=${row.id_caso}" class="btn btn-success"> Ver historial</a></td>
+
                 </tr>
             </c:forEach>
         </table>

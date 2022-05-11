@@ -310,8 +310,7 @@
                                         <td scope="row"><c:out value="${row.titulo}"></c:out></td>
                                         <td scope="row"><c:out value="${row.descripcion}"></c:out></td>
                                         <td scope="row"><c:out value="${row.fecha_final}"></c:out></td>
-                                        <td><a name="" id="<c:out value="${row.id_caso}"></c:out>" class="btn btn-primary" href="#?id=<c:out value="${row.id_caso}"></c:out>" role="button">Ver
-                                            Bitacora</a></td>
+                                        <td><a name="" id="<c:out value="${row.id_caso}"></c:out>" class="btn btn-primary" href="#?id=<c:out value="${row.id_caso}"></c:out>" role="button">Ver</a></td>
                                     </tr>
                                 </c:forEach>
                             </c:otherwise>

@@ -11,6 +11,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
+import java.util.Locale;
+import java.util.Random;
 
 @WebServlet(name = "ServletSolicitud", value = "/ServletSolicitud")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
@@ -29,17 +31,24 @@ public class ServletSolicitud extends HttpServlet {
                 request.setAttribute("mensaje",mensaje);
                 //Parametros
                 Integer idDepartamento= (Integer) session.getAttribute("idDepartamtento");
+                String nombreDep=(String)session.getAttribute("nombreDepartamento");
+                Random random=new Random();Integer numeros=random.nextInt(900)+100;
+                String idCaso=nombreDep.substring(0,3).toUpperCase(Locale.ROOT)+numeros;
+                beans.setId_caso(idCaso);
                 beans.setId_department(String.valueOf(idDepartamento));
                 beans.setTitulo(request.getParameter("titulo"));
                 beans.setDescripcion(request.getParameter("descripcion"));
-               // String archivo=request.getParameter("archivo");
+
                 Part archivo=request.getPart("archivo");
                 //verifica que no este nulo
-                if (archivo != null ||!archivo.equals("")) {
+                String ruta=archivo.getSubmittedFileName();
+                if (ruta.equals("")) {
+                    beans.setPdf_caso(null);
+                }else {
                     InputStream inArchivo=archivo.getInputStream();
-                    beans.setPdf_caso(( inArchivo));
+                    beans.setPdf_caso(inArchivo);
                 }
-                metodo.crearSolicitud(beans);
+              metodo.crearSolicitud(beans);
                request.getRequestDispatcher("/solicitud/solicitud.jsp").forward(request,response);
                 //response.sendRedirect("/solicitud/solicitud.jsp");
 

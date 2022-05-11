@@ -40,9 +40,20 @@
                             </div>
                             <%--Si es programdor puede crea bitacora--%>
                             <c:if test="${ sessionScope['idCargo']==1}">
-                                <div class="col-sm-6">
-                                    <a href="#addBitacora" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Añadir nueva Bitacora</span></a>
-                                </div>
+                                <c:choose>
+                                    <c:when test="${caso.getEstado(idCaso)==1 ||caso.getEstado(idCaso)==7 }">
+                                        <div class="col-sm-6">
+                                            <a href="#addBitacora" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Añadir nueva Bitacora</span></a>
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="alert alert-primary" role="alert">
+                                            <strong>Se ha cerrado el caso para crear bitacora</strong>
+                                        </div>
+                                    </c:otherwise>
+
+                                </c:choose>
+
                             </c:if>
                         </div>
                     </div>
@@ -92,6 +103,14 @@
                                         <label>Progreso a cambiar</label>
                                         <input type="number" class="form-control" name="txtProgreso" id="txtProgreso" required>
                                     </div>
+                                    <!-- Añadir Bitacora -->
+                                    <c:if test="${caso.getEstado(idCaso)==7}">
+                                    <div class="form-group">
+                                        <label>Ver observaciones</label>
+                                        <a href="#" class="btn btn-success">Ver</a>
+                                    </div>
+                                    </c:if>
+
                                     <div class="form-group">
                                         <label>Descripción</label>
                                         <textarea class="form-control" name="txtDescripcion" required></textarea>

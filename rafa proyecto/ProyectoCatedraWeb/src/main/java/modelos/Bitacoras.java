@@ -31,4 +31,49 @@ public class Bitacoras {
             ConexionJava.close(conn);
         }
     }
+    public  Integer ultimaBitacora(String id_caso) {
+        Connection conn = null;
+        PreparedStatement pr = null;
+        ResultSet rs = null;
+        Integer contador=0;
+        try {
+            conn = ConexionJava.getConnection();
+            pr = conn.prepareStatement("select max(id_bitacora) as ultimo from bitacora where id_caso=?");
+            pr.setString(1,id_caso);
+            rs= pr.executeQuery();
+            if ( rs.next()) {
+                contador= rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }finally {
+            ConexionJava.close(rs);
+            ConexionJava.close(pr);
+            ConexionJava.close(conn);
+        }
+        return contador;
+    }
+    public void resetearUltimaBitacora(String id_caso) {
+        Connection conn = null;
+        PreparedStatement pr = null;
+        ResultSet rs = null;
+        try {
+            conn = ConexionJava.getConnection();
+            pr = conn.prepareStatement("update bitacora set progreso_bitacora=0 where id_bitacora=? and id_caso=?");
+
+            pr.setInt(1, ultimaBitacora(id_caso));
+            pr.setString(2, id_caso);
+            pr.executeUpdate();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConexionJava.close(rs);
+            ConexionJava.close(pr);
+            ConexionJava.close(conn);
+        }
+    }
 }
