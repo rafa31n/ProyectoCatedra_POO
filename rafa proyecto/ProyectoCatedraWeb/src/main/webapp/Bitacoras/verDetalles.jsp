@@ -16,6 +16,9 @@
     left join estado e on e.id_estado = caso.id_estado where id_caso=?
     <sql:param value="${param.id}"></sql:param>
 </sql:query>
+<sql:query var="rsObservacion" dataSource="${db}">select * from observacion where id_caso=?
+    <sql:param value="${param.id}"></sql:param>
+</sql:query>
 <html>
 <head>
     <title>Ver detalles del Caso</title>
@@ -66,8 +69,15 @@
                                                         <a class="btn btn-primary" target="_blank" href="/ServletSolicitud?operacion=mostrar&id=${row.id_caso}">Descargar</a> </td>
                                                     </c:otherwise>
                                                 </c:choose>
-
                                             </div>
+                                            <c:forEach items="${rsObservacion.rows}" var="obs">
+                                                <c:if test="${not empty obs}">
+                                                    <div class="col-6 mb-3">
+                                                        <a class="btn btn-primary" target="_blank" href="../observaciones?id=${param.id}">Ver Observaciones</a> </td>
+                                                    </div>
+                                                </c:if>
+                                            </c:forEach>
+
                                         </div>
                                     </div>
                                 </div>

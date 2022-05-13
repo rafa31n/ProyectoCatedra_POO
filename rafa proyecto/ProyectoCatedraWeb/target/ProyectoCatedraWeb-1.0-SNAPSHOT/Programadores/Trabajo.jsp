@@ -11,7 +11,7 @@
 </head>
 <body>
 <sql:query var="rs" dataSource="${db}">
-    select pc.id_programador_caso, pc.id_caso, c.titulo, e.nombre_estado, c.fecha_creacion from programador_caso pc inner join caso c on c.id_caso = pc.id_caso inner join estado e on e.id_estado = c.id_estado where id_usuario = ${param.id}
+    select pc.id_programador_caso, pc.id_caso, c.titulo, e.nombre_estado,c.fecha_inicio,fecha_final, c.fecha_creacion from programador_caso pc inner join caso c on c.id_caso = pc.id_caso inner join estado e on e.id_estado = c.id_estado where id_usuario = ${param.id}
 </sql:query>
 <div class="content-container">
     <div class="contenido">
@@ -24,6 +24,10 @@
                 <th>Titulo</th>
                 <th>Estado</th>
                 <th>Fecha creación</th>
+                <th>Fecha que inicia A trabajar</th>
+                <th>Fecha que final del caso</th>
+
+
             </tr>
             </thead>
             <c:forEach items="${rs.rows}" var="row">
@@ -33,6 +37,9 @@
                     <td><c:out value="${row.titulo}"></c:out></td>
                     <td><c:out value="${row.nombre_estado}"></c:out></td>
                     <td><c:out value="${row.fecha_creacion}"></c:out></td>
+                    <td><c:out value="${row.fecha_inicio}"></c:out></td>
+                    <td><c:out value="${row.fecha_final}"></c:out></td>
+
                 </tr>
             </c:forEach>
             <c:if test="${empty rs.rows}">

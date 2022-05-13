@@ -3,6 +3,7 @@ package servlet;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import modelos.Casos;
 import modelos.ConexionJava;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -23,30 +24,39 @@ import java.util.Map;
 public class ServletReportes extends HttpServlet {
 
     public void reporteCaso(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition","attachment;filename=\"ReporteCasos.pdf\";");
-        ServletOutputStream out= response.getOutputStream();
-        Map parametros=new HashMap();
+
         Connection conn=null;
+        Casos casos=new Casos();
         //conexion bdd
         try {
             HttpSession session=request.getSession();
             conn=ConexionJava.getConnection();
             String fechaCreado=request.getParameter("fechaCreado");
             Integer idDepartamento= (Integer) session.getAttribute("idDepartamtento");
-            parametros.put("idDepartamento",idDepartamento);
-            parametros.put("fechaCreacion",fechaCreado);
-            String pdfRuta="";
-            pdfRuta=getServletContext().getRealPath("Reportes/FinalEspero.jasper");
-            //Pasar a ruta Jasper
-            JasperReport report= (JasperReport) JRLoader.loadObjectFromFile(pdfRuta);
-            //imprimir reporte
-            JasperPrint print= JasperFillManager.fillReport(report,parametros,conn);
-            JRPdfExporter exporter=new JRPdfExporter();
-            exporter.setExporterInput(new SimpleExporterInput(print));
-            exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(out));
-            exporter.exportReport();
-            System.out.println(parametros);
+            if ( casos.getCasosPorFecha(fechaCreado, String.valueOf(idDepartamento))>0) {
+                response.setContentType("application/pdf");
+                response.setHeader("Content-Disposition","attachment;filename=\"ReporteCasos.pdf\";");
+                ServletOutputStream out= response.getOutputStream();
+                Map parametros=new HashMap();
+                parametros.put("idDepartamento",idDepartamento);
+                parametros.put("fechaCreacion",fechaCreado);
+                String pdfRuta="";
+                pdfRuta=getServletContext().getRealPath("Reportes/FinalEspero.jasper");
+                //Pasar a ruta Jasper
+                JasperReport report= (JasperReport) JRLoader.loadObjectFromFile(pdfRuta);
+                //imprimir reporte
+                JasperPrint print= JasperFillManager.fillReport(report,parametros,conn);
+                JRPdfExporter exporter=new JRPdfExporter();
+                exporter.setExporterInput(new SimpleExporterInput(print));
+                exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(out));
+                exporter.exportReport();
+            }else {
+
+                request.setAttribute("mensaje","No se puede generar porque No hubieron casos ese dia");
+                request.getRequestDispatcher("Reportes/reportes.jsp").forward(request,response);
+            }
+
+
 
         }catch (SQLException e){
             e.printStackTrace();

@@ -25,8 +25,14 @@
     <form action="/ServletReportes" method="post">
         <label>Imprimir Reporte</label>
         <input type="date" name="fechaCreado" id="fechaCreado" required >
+
         <input type="submit" name="operacion" class="btn btn-success" value="Generar">
     </form>
+    <c:if test="${not empty mensaje}">
+        <div class="alert alert-primary" role="alert">
+            <strong><c:out value="${mensaje}"></c:out></strong>
+        </div>
+    </c:if>
     <form  method="post">
         <input type="date" name="fechaCreado" id="fechaCreado2" hidden>
         <input type="submit" name="operacion" id="buscar" class="btn btn-success" value="Buscar">

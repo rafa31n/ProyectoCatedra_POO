@@ -67,16 +67,24 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${rs.rows}" var="row">
-                        <tr>
+                        <c:choose>
+                            <c:when test="${empty rs.rows}">
+                                <tr><td>No hay bitacoras creadas</td> </tr>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach items="${rs.rows}" var="row">
+                                    <tr>
 
-                            <td><c:out value="${row.titulo_bitacora}"></c:out></td>
-                            <td><c:out value="${row.descripcion_bitacora}"></c:out></td>
-                            <td><c:out value="${row.progreso_bitacora}"></c:out>%</td>
-                            <td><c:out value="${row.fecha_bitacora}"></c:out></td>
+                                        <td><c:out value="${row.titulo_bitacora}"></c:out></td>
+                                        <td><c:out value="${row.descripcion_bitacora}"></c:out></td>
+                                        <td><c:out value="${row.progreso_bitacora}"></c:out>%</td>
+                                        <td><c:out value="${row.fecha_bitacora}"></c:out></td>
 
-                        </tr>
-                        </c:forEach>
+                                    </tr>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+
                         </tbody>
 
                 </div>
@@ -101,13 +109,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Progreso a cambiar</label>
-                                        <input type="number" class="form-control" name="txtProgreso" id="txtProgreso" required>
+                                        <input type="number" class="form-control" name="txtProgreso" id="txtProgreso" max="100" min="0" required>
                                     </div>
                                     <!-- Añadir Bitacora -->
                                     <c:if test="${caso.getEstado(idCaso)==7}">
                                     <div class="form-group">
                                         <label>Ver observaciones</label>
-                                        <a href="#" class="btn btn-success">Ver</a>
+                                        <a href="../observaciones/index.jsp?id=${idCaso}" class="btn btn-success">Ver</a>
                                     </div>
                                     </c:if>
 

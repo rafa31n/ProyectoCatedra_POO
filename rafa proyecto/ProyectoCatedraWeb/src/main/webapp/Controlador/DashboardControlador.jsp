@@ -23,8 +23,8 @@
 <c:set var="id_departamento" value="${obj.id_departamento}"></c:set>
 
 <c:choose>
-    <%-- ADmin---%>
-    <c:when test="${id_cargo ==2}">
+    <%-- ADmin,jefe desarrollo, jefe de area---%>
+    <c:when test="${id_cargo ==2 ||id_cargo ==3 ||id_cargo ==4}">
 
         <div class="content-container">
             <div class="container-fluid">
@@ -36,7 +36,7 @@
                                 <div class="card-body">
                                     <div class="media d-flex">
                                         <div class="align-self-center">
-                                            <a name="" id="" class="btn btn-primary" href="#" role="button">Ver</a>
+
                                         </div>
                                         <div class="media-body text-right">
                                             <h3> </h3>
@@ -55,7 +55,7 @@
                                 <div class="card-body">
                                     <div class="media d-flex">
                                         <div class="align-self-center">
-                                            <a name="" id="" class="btn btn-primary" href="#" role="button">Ver</a>
+
                                         </div>
                                         <div class="media-body text-right">
                                             <h3> </h3>
@@ -74,7 +74,7 @@
                                 <div class="card-body">
                                     <div class="media d-flex">
                                         <div class="align-self-center">
-                                            <a name="" id="" class="btn btn-primary" href="#" role="button">Ver</a>
+
                                         </div>
                                         <div class="media-body text-right">
                                             <h3></h3>
@@ -93,7 +93,7 @@
                                 <div class="card-body">
                                     <div class="media d-flex">
                                         <div class="align-self-center">
-                                            <a name="" id="" class="btn btn-primary" href="#" role="button">Ver</a>
+
                                         </div>
                                         <div class="media-body text-right">
                                             <h3></h3>
@@ -139,8 +139,8 @@
                             <c:otherwise>
 
 
-                                <sql:query var="rs" dataSource="${db}">select caso.id_caso,caso.titulo,caso.descripcion,pc.id_usuario from
-                                    caso inner join programador_caso pc on caso.id_caso = pc.id_caso where caso.id_departamento=?
+                                <sql:query var="rs" dataSource="${db}">select caso.id_caso,caso.titulo,caso.descripcion,CONCAT(u.nombre_usuario,' ',u.apellido_usuario) as nombre  from
+                                    caso inner join programador_caso pc on caso.id_caso = pc.id_caso left join usuario u on u.id_usuario = pc.id_usuario where caso.id_departamento=?
                                     <sql:param value="<%=obj.getId_departamento()%>"></sql:param>
                                 </sql:query>
                                 <c:forEach items="${rs.rows}" var="row">
@@ -148,8 +148,8 @@
                                         <td scope="row"><c:out value="${row.id_caso}"></c:out></td>
                                         <td scope="row"><c:out value="${row.titulo}"></c:out></td>
                                         <td scope="row"><c:out value="${row.descripcion}"></c:out></td>
-                                        <td scope="row"><c:out value="${row.id_usuario}"></c:out></td>
-                                        <td><a name="" id="<c:out value="${row.id_caso}"></c:out>" class="btn btn-primary" href="#?id=<c:out value="${row.id_caso}"></c:out>" role="button">Ver
+                                        <td scope="row"><c:out value="${row.nombre}"></c:out></td>
+                                        <td><a name="" id="<c:out value="${row.id_caso}"></c:out>" class="btn btn-primary" href="../Bitacoras/VerBitacoras.jsp?id=<c:out value="${row.id_caso}"></c:out>" role="button">Ver
                                             Bitacora</a></td>
                                     </tr>
                                 </c:forEach>
@@ -176,7 +176,6 @@
                                 <div class="card-body">
                                     <div class="media d-flex">
                                         <div class="align-self-center">
-                                            <a name="" id="" class="btn btn-primary" href="#" role="button">Ver</a>
                                         </div>
                                         <div class="media-body text-right">
                                             <h3><c:out value="${caso.contadorCasoProgramador(obj.id_usuario)}"></c:out></h3>
@@ -257,7 +256,7 @@
                                 <div class="card-body">
                                     <div class="media d-flex">
                                         <div class="align-self-center">
-                                            <a name="" id="" class="btn btn-primary" href="#" role="button">Ver</a>
+
                                         </div>
                                         <div class="media-body text-right">
                                             <h3><c:out value="${caso.contadorCasoProbrador(obj.id_usuario)}"></c:out></h3>

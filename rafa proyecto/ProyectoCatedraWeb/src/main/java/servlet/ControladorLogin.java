@@ -3,10 +3,7 @@ package servlet;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import modelos.Casos;
-import modelos.Departamentos;
-import modelos.OperacionesLogin;
-import modelos.Session;
+import modelos.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,6 +22,7 @@ public class ControladorLogin extends HttpServlet {
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
                 Departamentos nombreDep=new Departamentos();
+                Cargo cargo=new Cargo();
                 OperacionesLogin opLog = new OperacionesLogin();
                 if (opLog.verificarSession(username, password)) {
                     opLog.setSession(username, password);
@@ -36,6 +34,7 @@ public class ControladorLogin extends HttpServlet {
                     sessionHTTP.setAttribute("idusuario",session.getId_usuario());
                     sessionHTTP.setAttribute("idDepartamtento",session.getId_departamento());
                     sessionHTTP.setAttribute("nombreDepartamento",nombreDep.selectDepartamento( session.getId_departamento().toString()));
+                    sessionHTTP.setAttribute("nombreCargo",cargo.selectCargo(session.getId_cargo().toString()));
                     sessionHTTP.setAttribute("idCargo",session.getId_cargo());
                    response.sendRedirect("index.jsp");
                 } else {

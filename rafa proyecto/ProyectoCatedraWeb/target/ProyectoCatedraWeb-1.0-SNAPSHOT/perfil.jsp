@@ -36,7 +36,7 @@
                                     </div>
                                     <div class="col-6 mb-3">
                                         <h6>Cargo</h6>
-                                        <p class="text-muted">${sessionScope['idCargo']}</p>
+                                        <p class="text-muted">${sessionScope['nombreCargo']}</p>
                                     </div>
                                 </div>
                                 <div class="row pt-1">

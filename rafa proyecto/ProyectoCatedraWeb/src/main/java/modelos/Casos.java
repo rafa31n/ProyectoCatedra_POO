@@ -266,6 +266,31 @@ public class Casos {
         }
         return progreso;
     }
+    public Integer getCasosPorFecha(String fecha_creacion,String id_departamento){
+        Integer progreso=0;
+        Connection conn = null;
+        PreparedStatement pr = null;
+        ResultSet rs = null;
+        try {
+            conn = ConexionJava.getConnection();
+            pr = conn.prepareStatement("select count(*) as contador from caso where id_departamento=? and fecha_creacion=?");
+            pr.setString(1,id_departamento);
+            pr.setString(2,fecha_creacion);
+            rs= pr.executeQuery();
+            if (rs.next()) {
+                progreso= rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }finally {
+            ConexionJava.close(rs);
+            ConexionJava.close(pr);
+            ConexionJava.close(conn);
+        }
+        return progreso;
+    }
     public  String getEstadoName(String id_caso) {
         String stateName = "";
         Connection conn= null;
@@ -351,6 +376,51 @@ public class Casos {
             ConexionJava.close(pr);
             ConexionJava.close(conn);
         }
+    }
+    public Boolean verficarFechas(String fechaInicio, String fechaFinal){
+        LocalDate fechaInLocal=LocalDate.parse(fechaInicio);
+        LocalDate fechaFiLocal=LocalDate.parse(fechaFinal);
+        Boolean mayor=false;
+        if (fechaFiLocal.isAfter(fechaInLocal)){
+            mayor=true;
+
+        }else {
+            mayor=false;
+
+        }
+        return mayor;
+    }
+    public Boolean FechasExistentesInicio(String fechaInicio,String programador){
+
+
+        Boolean mayor=false;
+        Connection conn = null;
+        PreparedStatement pr = null;
+        ResultSet rs = null;
+        Integer contador=0;
+        try {
+            conn = ConexionJava.getConnection();
+            pr = conn.prepareStatement("select count(fecha_inicio) as fechas from caso left join programador_caso pc on caso.id_caso = pc.id_caso where pc.id_usuario=? and fecha_inicio=?");
+            pr.setString(1,programador);
+            pr.setString(2,fechaInicio);
+            rs= pr.executeQuery();
+            rs.next();
+            contador= rs.getInt(1);
+            if (contador >0) {
+                mayor=false;
+            }else{
+                mayor=true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }finally {
+            ConexionJava.close(rs);
+            ConexionJava.close(pr);
+            ConexionJava.close(conn);
+        }
+        return mayor;
     }
 
     public Integer getCasosEnproceso() {

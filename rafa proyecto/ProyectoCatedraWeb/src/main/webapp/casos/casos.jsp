@@ -29,7 +29,7 @@
     </sql:query>
     <sql:query var="rsEstado" dataSource="${db}">select * from estado  </sql:query>
     <div class=""></div>
-    <div class="container">
+    <div class="container-fluid">
         <h1>Casos del departamento: ${departamentoName.selectDepartamento(idDepartamento)}  </h1>
         <%--- Buscador segun estado--%>
 

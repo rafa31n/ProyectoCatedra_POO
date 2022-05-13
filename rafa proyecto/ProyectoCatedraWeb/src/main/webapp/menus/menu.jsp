@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Fernando
-  Date: 15/4/2022
-  Time: 10:22
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="modelos.Session" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -14,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         .sidebar-container {
             position: fixed;
@@ -26,8 +21,6 @@
             background: #2a93da;
             color: #fff;
         }
-
-
 
         .sidebar-logo {
             padding: 10px 15px 10px 30px;
@@ -98,6 +91,7 @@
         .content-container {
             padding-left: 220px;
         }
+
         .navbar {
             position: relative;
             display: -ms-flexbox;
@@ -115,82 +109,236 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
 <body>
-<!-- menu-->
-<div class="sidebar-container">
-    <div class="sidebar-logo">
-        <i class="bi-circle-fill" style="font-size: 1rem; color: rgb(255, 255, 255);">Telecomunicaciones</i>
-    </div>
-    <ul class="sidebar-navigation">
 
-        <li>
-            <!-- Inicio-->
-            <a href="../index.jsp">
-                <i class="bi-house" style="font-size: 1rem; color: rgb(255, 255, 255);"></i><i class="fa fa-tachometer" aria-hidden="true"></i> Inicio
-            </a>
-        </li>
-        <!-- Caso-->
-        <li>
+<%
+    Session ses = new Session();
+    int cargo = ses.getId_cargo();
 
-            <a href="../casos/casos.jsp">
-                <i class="bi-archive" style="font-size: 1rem; color: rgb(255, 255, 255);"></i><i class="fa fa-tachometer" aria-hidden="true"></i> Casos
-            </a>
-        </li>
-        <!-- Bitacora-->
-        <li>
+    String menuProgra = "<div class=\"sidebar-container\">\n" +
+            "    <div class=\"sidebar-logo\">\n" +
+            "        <i class=\"bi-circle-fill\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\">Telecomunicaciones</i>\n" +
+            "    </div>\n" +
+            "    <ul class=\"sidebar-navigation\">\n" +
+            "\n" +
+            "        <li>\n" +
+            "            <!-- Inicio-->\n" +
+            "            <a href=\"../index.jsp\">\n" +
+            "                <i class=\"bi-house\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i class=\"fa fa-tachometer\"\n" +
+            "                                                                                               aria-hidden=\"true\"></i>\n" +
+            "                Inicio\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "        <!-- Caso-->\n" +
+            "        <!-- Bitacora-->\n" +
+            "        <li>\n" +
+            "\n" +
+            "            <a href=\"../Bitacoras/Bitacoras.jsp\">\n" +
+            "                <i class=\"bi-bootstrap\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i\n" +
+            "                    class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Bitacoras\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "    </ul>\n" +
+            "</div>";
 
-            <a href="../Bitacoras/Bitacoras.jsp">
-                <i class="bi-bootstrap" style="font-size: 1rem; color: rgb(255, 255, 255);"></i><i class="fa fa-tachometer" aria-hidden="true"></i> Bitacoras
-            </a>
-        </li>
-        <!-- Crear solicitud-->
-        <li>
+    String menuAdmin = "<div class=\"sidebar-container\">\n" +
+            "    <div class=\"sidebar-logo\">\n" +
+            "        <i class=\"bi-circle-fill\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\">Telecomunicaciones</i>\n" +
+            "    </div>\n" +
+            "    <ul class=\"sidebar-navigation\">\n" +
+            "\n" +
+            "        <li>\n" +
+            "            <!-- Inicio-->\n" +
+            "            <a href=\"../index.jsp\">\n" +
+            "                <i class=\"bi-house\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i class=\"fa fa-tachometer\"\n" +
+            "                                                                                               aria-hidden=\"true\"></i>\n" +
+            "                Inicio\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "        <!-- Caso-->\n" +
+            "        <li>\n" +
+            "\n" +
+            "            <a href=\"../casos/casos.jsp\">\n" +
+            "                <i class=\"bi-archive\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i\n" +
+            "                    class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Casos\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "        <!-- Bitacora-->\n" +
+            "        <li>\n" +
+            "\n" +
+            "            <a href=\"../Bitacoras/Bitacoras.jsp\">\n" +
+            "                <i class=\"bi-bootstrap\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i\n" +
+            "                    class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Bitacoras\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "        <!-- Crear solicitud-->\n" +
+            "        <li>\n" +
+            "\n" +
+            "            <a href=\"../solicitud/solicitud.jsp\">\n" +
+            "                <i class=\"bi-envelope\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i\n" +
+            "                    class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Solicitud\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "        <!--Usuarios-->\n" +
+            "        <li>\n" +
+            "\n" +
+            "            <a href=\"../Usuarios/Usuarios.jsp\">\n" +
+            "                <i class=\"bi bi-person\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i\n" +
+            "                    class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Usuarios\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "        <!--Programadores-->\n" +
+            "        <li>\n" +
+            "\n" +
+            "            <a href=\"../Programadores/Programadores.jsp\">\n" +
+            "                <i class=\"bi bi-person-workspace\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i\n" +
+            "                    class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Programadores\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "        <!--Crear Reporte-->\n" +
+            "        <li>\n" +
+            "\n" +
+            "            <a href=\"../Reportes/reportes.jsp\">\n" +
+            "                <i class=\"bi bi-file-earmark\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i\n" +
+            "                    class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Ver reportes\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "        <!-- Departamentos-->\n" +
+            "        <li>\n" +
+            "            <a href=\"../Departamentos/departamentos.jsp\">\n" +
+            "                <i class=\"bi bi-app-indicator\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i\n" +
+            "                    class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Departamentos\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "       <!-- Aceptar/Denegar Solicitud-->\n" +
+            "        <li>\n" +
+            "            <a href=\"../AceptarDenegarCaso/aceptardenegar.jsp\">\n" +
+            "                <i class=\"bi-envelope\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Aceptar/Denegar Solicitud\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "        <!-- Revision de Casos-->\n" +
+            "        <li>\n" +
+            "           \n" +
+            "            <a href=\"../RevisionCasos/revisionCasos.jsp\">\n" +
+            "                <i class=\"bi-archive\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Revision de Casos\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "    </ul>\n" +
+            "</div>";
 
-            <a href="../solicitud/solicitud.jsp">
-                <i class="bi-envelope" style="font-size: 1rem; color: rgb(255, 255, 255);"></i><i class="fa fa-tachometer" aria-hidden="true"></i> Solicitud
-            </a>
-        </li>
-        <!--Usuarios-->
-        <li>
+    String menuJefeArea = "<div class=\"sidebar-container\">\n" +
+            "    <div class=\"sidebar-logo\">\n" +
+            "        <i class=\"bi-circle-fill\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\">Telecomunicaciones</i>\n" +
+            "    </div>\n" +
+            "    <ul class=\"sidebar-navigation\">\n" +
+            "\n" +
+            "        <li>\n" +
+            "            <!-- Inicio-->\n" +
+            "            <a href=\"../index.jsp\">\n" +
+            "                <i class=\"bi-house\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Inicio\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "        <!-- Caso-->\n" +
+            "        <li>\n" +
+            "\n" +
+            "            <a href=\"../casos/casos.jsp\">\n" +
+            "                <i class=\"bi-archive\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Casos\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "        <!-- Crear solicitud-->\n" +
+            "        <li>\n" +
+            "\n" +
+            "            <a href=\"../solicitud/solicitud.jsp\">\n" +
+            "                <i class=\"bi-envelope\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Solicitud\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "        <!--Crear Reporte-->\n" +
+            "        <li>\n" +
+            "\n" +
+            "            <a href=\"../Reportes/reportes.jsp\">\n" +
+            "                <i class=\"bi bi-file-earmark\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Ver reportes\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "    </ul>\n" +
+            "</div>";
 
-            <a href="../Usuarios/Usuarios.jsp">
-                <i class="bi bi-person" style="font-size: 1rem; color: rgb(255, 255, 255);"></i><i class="fa fa-tachometer" aria-hidden="true"></i> Usuarios
-            </a>
-        </li>
-        <!--Programadores-->
-        <li>
+    String menuJefeDesarrollo = "<div class=\"sidebar-container\">\n" +
+            "    <div class=\"sidebar-logo\">\n" +
+            "        <i class=\"bi-circle-fill\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\">Telecomunicaciones</i>\n" +
+            "    </div>\n" +
+            "    <ul class=\"sidebar-navigation\">\n" +
+            "\n" +
+            "        <li>\n" +
+            "<!-- Inicio-->\n" +
+            "            <a href=\"../index.jsp\">\n" +
+            "                <i class=\"bi-house\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Inicio\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "<!--Programadores-->\n" +
+            "        <li>\n" +
+            "\n" +
+            "            <a href=\"../Programadores/Programadores.jsp\">\n" +
+            "                <i class=\"bi bi-person-workspace\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Programadores\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "<!--Crear Reporte-->\n" +
+            "        <li>\n" +
+            "\n" +
+            "            <a href=\"../Reportes/reportes.jsp\">\n" +
+            "                <i class=\"bi bi-file-earmark\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Ver reportes\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "<!-- Aceptar/Denegar Solicitud-->\n" +
+            "        <li>\n" +
+            "            <a href=\"../AceptarDenegarCaso/aceptardenegar.jsp\">\n" +
+            "                <i class=\"bi bi-app-indicator\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Aceptar/Denegar Solicitud\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "    </ul>\n" +
+            "</div>";
 
-            <a href="../Programadores/Programadores.jsp">
-                <i class="bi bi-person-workspace" style="font-size: 1rem; color: rgb(255, 255, 255);"></i><i class="fa fa-tachometer" aria-hidden="true"></i> Programadores
-            </a>
-        </li>
-        <!--Crear Reporte-->
-        <li>
+    String menuTester = "<div class=\"sidebar-container\">\n" +
+            "    <div class=\"sidebar-logo\">\n" +
+            "        <i class=\"bi-circle-fill\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\">Telecomunicaciones</i>\n" +
+            "    </div>\n" +
+            "    <ul class=\"sidebar-navigation\">\n" +
+            "\n" +
+            "        <li>\n" +
+            "            <!-- Inicio-->\n" +
+            "            <a href=\"../index.jsp\">\n" +
+            "                <i class=\"bi-house\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Inicio\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "        <!-- Revision de Casos-->\n" +
+            "        <li>\n" +
+            "\n" +
+            "            <a href=\"../RevisionCasos/revisionCasos.jsp\">\n" +
+            "                <i class=\"bi-archive\" style=\"font-size: 1rem; color: rgb(255, 255, 255);\"></i><i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Revision de Casos\n" +
+            "            </a>\n" +
+            "        </li>\n" +
+            "    </ul>\n" +
+            "</div>";
 
-            <a href="../Reportes/reportes.jsp">
-                <i class="bi bi-file-earmark" style="font-size: 1rem; color: rgb(255, 255, 255);"></i><i class="fa fa-tachometer" aria-hidden="true"></i> Ver reportes
-            </a>
-        </li>
-        <!-- departamentos-->
-        <li>
-            <a href="#">
-                <i class="bi bi-app-indicator" style="font-size: 1rem; color: rgb(255, 255, 255);"></i><i class="fa fa-tachometer" aria-hidden="true"></i> Departamentos
-            </a>
-        </li>
-    </ul>
-</div>
-<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" >
+    if (cargo == 1) {
+        out.println(menuProgra);
+    } else if (cargo == 2) {
+        out.println(menuAdmin);
+    } else if (cargo == 3) {
+        out.println(menuJefeArea);
+    } else if (cargo == 4) {
+        out.println(menuJefeDesarrollo);
+    } else if (cargo == 5) {
+        out.println(menuTester);
+    }
 
-
+%>
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
-
-
-
         <div class="topbar-divider d-none d-sm-block"></div>
-
         <!-- Nav Item - User Information -->
         <div class="dropdown open">
-            <button class="btn  dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+            <button class="btn  dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown"
+                    aria-haspopup="true"
                     aria-expanded="false">
                 <c:out value="${sessionScope['nombre']}"></c:out>
             </button>
@@ -199,10 +347,9 @@
                 <a class="dropdown-item " href="../cerrarSession.jsp">Salir</a>
             </div>
         </div>
-
     </ul>
-
 </nav>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://unpkg.com/popper.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
